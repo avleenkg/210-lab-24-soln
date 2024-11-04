@@ -55,7 +55,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 7) {
+    while (sel != 13) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -81,6 +81,35 @@ int main() {
             case 6: 
                 cout << "Doubling age of each goat:\n";
                 display_trip(trip);
+                break;
+            case 7: 
+                cout << "Under what age to remove goats? ";
+                int ages;
+                cin >> ages;
+                removegoats(trip, ages);
+                display_trip(trip);
+                break;
+            case 8: 
+                cout << "Calculating total age:\n";
+                totalage(trip);
+                break;
+            case 9:
+                cout << "Incrementing age by 1:\n";
+                incrementage(trip);
+                break;
+            case 10: 
+                cout << "Reversing goat list:\n";
+                reversegoats(trip);
+                break;
+            case 11:
+                cout << "Which age to check goats for? ";
+                int a;
+                cin >> a;
+                checkage(trip, a);
+                break;
+            case 12: 
+                cout << "Shuffling list:\n";
+                shuffle(trip);
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -192,4 +221,5 @@ void checkage(const list<Goat>& trip, int a){
 void shuffle(list<Goat>& trip){
     vector<Goat> goats(trip.begin(), trip.end());
     shuffle(goats.begin(), goats.end(), default_random_engine());
+    trip = list<Goat>(goats.begin(), goats.end());
 }
