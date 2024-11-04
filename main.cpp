@@ -96,10 +96,12 @@ int main() {
             case 9:
                 cout << "Incrementing age by 1:\n";
                 incrementage(trip);
+                display_trip(trip);
                 break;
             case 10: 
                 cout << "Reversing goat list:\n";
                 reversegoats(trip);
+                display_trip(trip);
                 break;
             case 11:
                 cout << "Which age to check goats for? ";
@@ -110,6 +112,7 @@ int main() {
             case 12: 
                 cout << "Shuffling list:\n";
                 shuffle(trip);
+                display_trip(trip);
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -130,11 +133,17 @@ int main_menu() {
     cout << "[4] Sort goats by age:\n";
     cout << "[5] Find goat by name:\n";
     cout << "[6] Doubling goat age:\n";
-    cout << "[7] Quit\n";
+    cout << "[7] Removing goat by age:\n";
+    cout << "[8] Finding total goat age:\n";
+    cout << "[9] Incrementing goat age:\n";
+    cout << "[10] Reversing goat list:\n";
+    cout << "[11] Checking goat by age:\n";
+    cout << "[12] Shuffling goat list:\n";
+    cout << "[13] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 7) {
+    while (choice < 1 || choice > 13) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
