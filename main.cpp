@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <list>
 #include <algorithm>
+#include <numeric>
 #include "Goat.h"
 using namespace std;
 
@@ -15,6 +16,8 @@ void display_trip(list<Goat> trip);
 void findbyname(const list<Goat>& trip);
 void doubleage(list<Goat>& trip);
 void removegoats(list<Goat>& trip, int a);
+void totalage(const list<Goat>& trip);
+void incrementage(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -167,6 +170,15 @@ void removegoats(list<Goat>& trip, int a){
     trip.erase(remove_if(trip.begin(), trip.end(), [a](Goat& g){ return g.get_age() < a;}), trip.end());
     cout << "Removed goats under age " << a << endl;
 }
+void totalage(const list<Goat>& trip){
+    int total = accumulate(trip.begin(), trip.end(), 0, [](int sum, const Goat& g) { return sum + g.get_age(); });
+    cout << "Total age: " << total << endl;
+}
+void incrementage(list<Goat>& trip){
+    transform(trip.begin(), trip.end(), trip.begin(), [](Goat& g) { g.set_age(g.get_age() + 1); return g; });
+}
+
+
 
 
 
