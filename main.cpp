@@ -13,6 +13,8 @@ void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
 void findbyname(const list<Goat>& trip);
+void doubleage(list<Goat>& trip);
+void removegoats(list<Goat>& trip, int a);
 int main_menu();
 
 int main() {
@@ -46,7 +48,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 6) {
+    while (sel != 7) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -69,6 +71,10 @@ int main() {
                 cout << "Finding goat by name:\n";
                 findbyname(trip);
                 break;
+            case 6: 
+                cout << "Doubling age of each goat:\n";
+                display_trip(trip);
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -87,11 +93,12 @@ int main_menu() {
     cout << "[3] List goats\n";
     cout << "[4] Sort goats by age:\n";
     cout << "[5] Find goat by name:\n";
-    cout << "[6] Quit\n";
+    cout << "[6] Doubling goat age:\n";
+    cout << "[7] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 6) {
+    while (choice < 1 || choice > 7) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -152,3 +159,14 @@ void findbyname(const list<Goat>& trip){
         cout << name << " could not be found.\n";
     }
 }
+void doubleage(list<Goat>& trip) {
+    for_each(trip.begin(), trip.end(), [](Goat& g){ g.set_age(g.get_age() * 2); });
+    cout << "Age doubled.\n";
+}
+void removegoats(list<Goat>& trip, int a){
+    trip.erase(remove_if(trip.begin(), trip.end(), [a](Goat& g){ return g.get_age() < a;}), trip.end());
+    cout << "Removed goats under age " << a << endl;
+}
+
+
+
