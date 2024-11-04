@@ -4,6 +4,7 @@
 #include <list>
 #include <algorithm>
 #include <numeric>
+#include <random>
 #include "Goat.h"
 using namespace std;
 
@@ -19,6 +20,8 @@ void removegoats(list<Goat>& trip, int a);
 void totalage(const list<Goat>& trip);
 void incrementage(list<Goat>& trip);
 void reversegoats(list<Goat>& trip);
+void checkage(const list<Goat>& trip, int a);
+void shuffle(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -178,9 +181,15 @@ void totalage(const list<Goat>& trip){
 void incrementage(list<Goat>& trip){
     transform(trip.begin(), trip.end(), trip.begin(), [](Goat& g) { g.set_age(g.get_age() + 1); return g; });
 }
-void reversegoats(list<Goat>& trip);
-
-
-
-
-
+void reversegoats(list<Goat>& trip){
+    trip.reverse();
+    cout << "Goat list has been reversed.\n";
+}
+void checkage(const list<Goat>& trip, int a){
+    bool hasage = any_of(trip.begin(), trip.end(), [a](const Goat& g){ return g.get_age() == a; });
+    cout << "Is there a goat with that age? " << (hasage ? "Yes" : "No") << endl << endl;
+}
+void shuffle(list<Goat>& trip){
+    vector<Goat> goats(trip.begin(), trip.end());
+    shuffle(goats.begin(), goats.end(), default_random_engine());
+}
