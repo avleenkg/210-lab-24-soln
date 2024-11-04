@@ -12,6 +12,7 @@ int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
+void findbyname(const list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -45,7 +46,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 5) {
+    while (sel != 6) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -64,6 +65,10 @@ int main() {
                 trip.sort();
                 display_trip(trip);
                 break;
+            case 5:
+                cout << "Finding goat by name:\n";
+                findbyname(trip);
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -81,11 +86,12 @@ int main_menu() {
     cout << "[2] Delete a goat\n";
     cout << "[3] List goats\n";
     cout << "[4] Sort goats by age:\n";
-    cout << "[5] Quit\n";
+    cout << "[5] Find goat by name:\n";
+    cout << "[6] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 5) {
+    while (choice < 1 || choice > 6) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -132,4 +138,17 @@ int select_goat(list<Goat> trp) {
         cin >> input;
     }
     return input;
+}
+void findbyname(const list<Goat>& trip){
+    string name;
+    cout << "Enter goat name to find: ";
+    cin >> name;
+
+    auto it = find_if(trip.begin(), trip.end(), [&](const Goat g){ return g.get_name() == name; });
+    if (it != trip.end()) {
+        cout << it->get_name() << " found with age " << it->get_age() << " and color " << it->get_color() << endl;
+    }
+    else {
+        cout << name << " could not be found.\n";
+    }
 }
