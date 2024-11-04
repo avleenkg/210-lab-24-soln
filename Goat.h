@@ -25,7 +25,7 @@ public:
     string get_color() const        { return color; }
 
     bool operator< (const Goat &other) const {
-        return name < other.name;
+        return age < other.age;
     }
 };
 
