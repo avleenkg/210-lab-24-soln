@@ -18,6 +18,7 @@ void doubleage(list<Goat>& trip);
 void removegoats(list<Goat>& trip, int a);
 void totalage(const list<Goat>& trip);
 void incrementage(list<Goat>& trip);
+void reversegoats(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -177,6 +178,7 @@ void totalage(const list<Goat>& trip){
 void incrementage(list<Goat>& trip){
     transform(trip.begin(), trip.end(), trip.begin(), [](Goat& g) { g.set_age(g.get_age() + 1); return g; });
 }
+void reversegoats(list<Goat>& trip);
 
 
 
